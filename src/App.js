@@ -10,6 +10,7 @@ import Routes from './Routes';
 import Inicio from './views/Inicio';
 import Episodio from './views/Episodio';
 import Character from './views/Character';
+import Location from './views/Location';
 import './App.css';
 
 const endPoint = 'https://integracion-rick-morty-api.herokuapp.com/graphql';
@@ -42,6 +43,10 @@ let chars = [];
 for (let i = 1; i < 1000; i++) {
     chars.push(i);
 }
+let locs = [];
+for (let i = 1; i < 120; i++) {
+    locs.push(i);
+}
 
 const location = browserHistory.location;
 function App() {
@@ -65,6 +70,13 @@ function App() {
                     <div key={char}>
                         <Route exact path={'/character/' + char}>
                             <Character id={char} />
+                        </Route>
+                    </div>
+                ))}
+                {locs.map((loc) => (
+                    <div key={loc}>
+                        <Route exact path={'/location/' + loc}>
+                            <Location id={loc} />
                         </Route>
                     </div>
                 ))}

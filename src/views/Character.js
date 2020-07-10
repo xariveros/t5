@@ -63,6 +63,12 @@ const Character = (props) => {
                     <p>{infoChar.gender}</p>
                     <p>{infoChar.species}</p>
                     <p>{infoChar.status}</p>
+                    <Link to={'/location/' + infoChar.location.id}>
+                        <p>{infoChar.location.name}</p>
+                    </Link>
+                    <Link to={'/location/' + infoChar.origin.id}>
+                        <p>{infoChar.origin.name}</p>
+                    </Link>
                     {infoChar.episode.map((epi) => (
                         <div key={epi.id}>
                             <Link to={'/episodio/' + epi.id}>{epi.name}</Link>
