@@ -56,19 +56,28 @@ const Character = (props) => {
             {' '}
             {infoChar.episode ? (
                 <div>
-                    {console.log(infoChar.characters, infoChar)}
-                    <p>{infoChar.id}</p>
-                    <p>{infoChar.name}</p>
+                    <h1>
+                        <p>{infoChar.name}</p>
+                    </h1>
                     <img src={infoChar.image} alt='Logo' />;
-                    <p>{infoChar.gender}</p>
-                    <p>{infoChar.species}</p>
-                    <p>{infoChar.status}</p>
+                    <p>Género: {infoChar.gender}</p>
+                    <p>Especie: {infoChar.species}</p>
+                    <p>Estado: {infoChar.status}</p>
+                    <h1>
+                        <p>Locación:</p>
+                    </h1>
                     <Link to={'/location/' + infoChar.location.id}>
                         <p>{infoChar.location.name}</p>
                     </Link>
+                    <h1>
+                        <p>Origen:</p>
+                    </h1>
                     <Link to={'/location/' + infoChar.origin.id}>
-                        <p>{infoChar.origin.name}</p>
+                        <p>Origen {infoChar.origin.name}</p>
                     </Link>
+                    <h1>
+                        <p>Episodios</p>
+                    </h1>
                     {infoChar.episode.map((epi) => (
                         <div key={epi.id}>
                             <Link to={'/episodio/' + epi.id}>{epi.name}</Link>

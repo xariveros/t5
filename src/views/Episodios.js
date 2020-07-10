@@ -18,7 +18,6 @@ const getEpisodios = () => gql`
 
 const Episodios = () => {
     const [listaEpisodios, setListaEpisodios] = useState([]);
-    const [listaEpisodios2, setListaEpisodios2] = useState([]);
     const primera = useQuery(getEpisodios(), {
         fetchPolicy: 'no-cache',
         variables: { page: 1 },
@@ -30,7 +29,6 @@ const Episodios = () => {
 
     useEffect(() => {
         if (primera.data && segunda.data) {
-            console.log(primera.data);
             setListaEpisodios((oldArray) => [
                 ...oldArray,
                 ...primera.data.episodes.results,
@@ -47,11 +45,9 @@ const Episodios = () => {
     ]);
 
     if (primera.loading || segunda.loading) {
-        console.log('deberia estar cargadno');
         return <div>Cargando</div>;
     }
     if (primera.error || segunda.error) {
-        console.log('error');
         //console.log(listaEpisodios);
         return <div>error</div>;
     }
@@ -60,11 +56,13 @@ const Episodios = () => {
         <div>
             {listaEpisodios.map((episodio) => (
                 <div key={episodio.id} style={{ padding: '20' }}>
-                    <p>{episodio.id}</p>
                     <Link to={'/episodio/' + episodio.id}>
-                        <p>{episodio.name}</p>
+                        <h1>
+                            <p>{episodio.name}</p>
+                        </h1>
                     </Link>
-                    <p>{episodio.air_date}</p>
+                    <p>Fecha de emisión: {episodio.air_date}</p>
+                    <p>Código de episodio: {episodio.episode}</p>
                 </div>
             ))}
         </div>

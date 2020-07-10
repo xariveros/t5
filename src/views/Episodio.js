@@ -20,7 +20,6 @@ const getEpisodio = () => gql`
 const Episodio = (props) => {
     const idx = parseInt(props.id);
     const [infoEpisodio, setInfoEpisodio] = useState({});
-    const [listaChars, setListaChars] = useState([]);
     const { data, loading, error } = useQuery(getEpisodio(), {
         fetchPolicy: 'no-cache',
         variables: { id: idx },
@@ -30,7 +29,6 @@ const Episodio = (props) => {
         if (data) {
             console.log(data);
             setInfoEpisodio(data.episode);
-            setListaChars(data.episode.characters);
         }
     }, [data, loading, error]);
     if (loading) {
@@ -46,10 +44,14 @@ const Episodio = (props) => {
             {' '}
             {infoEpisodio.characters ? (
                 <div>
-                    {console.log(infoEpisodio.characters, listaChars)}
-                    <p>{infoEpisodio.name}</p>
-                    <p>{infoEpisodio.air_date}</p>
-                    <p>{infoEpisodio.episode}</p>
+                    <h1>
+                        <p>{infoEpisodio.name}</p>
+                    </h1>
+                    <p>Fecha de emisión: {infoEpisodio.air_date}</p>
+                    <p>Código de episodio: {infoEpisodio.episode}</p>
+                    <h1>
+                        <p>Personajes</p>
+                    </h1>
                     {infoEpisodio.characters.map((char) => (
                         <div key={char.id}>
                             <Link to={'/character/' + char.id}>

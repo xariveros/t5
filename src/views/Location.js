@@ -45,11 +45,14 @@ const Location = (props) => {
             {' '}
             {infoLocation.residents ? (
                 <div>
-                    {console.log(infoLocation.characters, infoLocation)}
-                    <p>{infoLocation.id}</p>
-                    <p>{infoLocation.name}</p>
-                    <p>{infoLocation.type}</p>
-                    <p>{infoLocation.dimension}</p>
+                    <h1>
+                        <p>{infoLocation.name}</p>
+                    </h1>
+                    <p>Tipo: {infoLocation.type}</p>
+                    <p>Dimensión: {infoLocation.dimension}</p>
+                    <h1>
+                        <p>Personajes:</p>
+                    </h1>
                     {infoLocation.residents.map((char) => (
                         <div key={char.id}>
                             <Link to={'/character/' + char.id}>
